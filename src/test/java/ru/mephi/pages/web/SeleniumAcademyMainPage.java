@@ -2,6 +2,7 @@ package ru.mephi.pages.web;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -24,6 +25,15 @@ public class SeleniumAcademyMainPage {
 
     @FindBy(css = "a[href*='login']")
     private WebElement loginLinkAlternative;
+
+    @FindBy(linkText = "Courses")
+    private WebElement coursesMenu;
+
+    @FindBy(css = "a[href*='selenium-catalog']")
+    private WebElement seleniumCatalogLink;
+
+    @FindBy(css = "a[href*='appium-catalog']")
+    private WebElement appiumCatalogLink;
 
     public SeleniumAcademyMainPage(WebDriver driver) {
         this.driver = driver;
@@ -84,6 +94,56 @@ public class SeleniumAcademyMainPage {
     public boolean isLoginLinkDisplayed() {
         try {
             return loginLink.isDisplayed() || loginLinkAlternative.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public void hoverOverCoursesMenu() {
+        Actions actions = new Actions(driver);
+        wait.until(ExpectedConditions.visibilityOf(coursesMenu));
+        actions.moveToElement(coursesMenu).perform();
+
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            throw new RuntimeException("Ошибка при ожидании после наведения на меню Courses", e);
+        }
+    }
+
+    public void clickSeleniumCatalog() {
+        hoverOverCoursesMenu();
+        wait.until(ExpectedConditions.elementToBeClickable(seleniumCatalogLink));
+        seleniumCatalogLink.click();
+    }
+
+    public void clickAppiumCatalog() {
+        hoverOverCoursesMenu();
+        wait.until(ExpectedConditions.elementToBeClickable(appiumCatalogLink));
+        appiumCatalogLink.click();
+    }
+
+    public boolean isCoursesMenuDisplayed() {
+        try {
+            return coursesMenu.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean isSeleniumCatalogLinkVisible() {
+        try {
+            hoverOverCoursesMenu();
+            return seleniumCatalogLink.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean isAppiumCatalogLinkVisible() {
+        try {
+            hoverOverCoursesMenu();
+            return appiumCatalogLink.isDisplayed();
         } catch (Exception e) {
             return false;
         }

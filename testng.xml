@@ -4,6 +4,7 @@
         <classes>
             <class name="ru.mephi.tests.web.SeleniumAcademyTests"/>
             <class name="ru.mephi.tests.web.LoginTests"/>
+            <class name="ru.mephi.tests.web.CoursesMenuTests"/>
         </classes>
     </test>
 </suite>
