@@ -31,5 +31,12 @@ public class ConfigReader {
     public static String getBrowser() {
         return getProperty("web.browser");
     }
-}
 
+    public static String getTestLoginEmail() {
+        return getProperty("test.login.email");
+    }
+
+    public static String getTestLoginPassword() {
+        return getProperty("test.login.password");
+    }
+}

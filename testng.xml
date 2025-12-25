@@ -3,6 +3,7 @@
     <test name="Selenium Academy Tests">
         <classes>
             <class name="ru.mephi.tests.web.SeleniumAcademyTests"/>
+            <class name="ru.mephi.tests.web.LoginTests"/>
         </classes>
     </test>
 </suite>

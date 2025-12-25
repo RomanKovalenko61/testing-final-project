@@ -19,6 +19,12 @@ public class SeleniumAcademyMainPage {
     @FindBy(css = "div.wp-block-uagb-container.uagb-block-6edaf1d4")
     private WebElement mainContainer;
 
+    @FindBy(linkText = "Log In")
+    private WebElement loginLink;
+
+    @FindBy(css = "a[href*='login']")
+    private WebElement loginLinkAlternative;
+
     public SeleniumAcademyMainPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -64,5 +70,22 @@ public class SeleniumAcademyMainPage {
     public String getPageTitle() {
         return driver.getTitle();
     }
-}
 
+    public void clickLoginLink() {
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(loginLink));
+            loginLink.click();
+        } catch (Exception e) {
+            wait.until(ExpectedConditions.elementToBeClickable(loginLinkAlternative));
+            loginLinkAlternative.click();
+        }
+    }
+
+    public boolean isLoginLinkDisplayed() {
+        try {
+            return loginLink.isDisplayed() || loginLinkAlternative.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+}

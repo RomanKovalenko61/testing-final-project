@@ -1,8 +1,10 @@
 package ru.mephi.tests.web;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterMethod;
@@ -21,15 +23,22 @@ public class BaseWebTest {
         switch (browser.toLowerCase()) {
             case "chrome":
                 WebDriverManager.chromedriver().setup();
-                driver = new ChromeDriver();
+
+                // Настройка ChromeOptions для избежания ошибки maximize()
+                ChromeOptions options = new ChromeOptions();
+                options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+                options.addArguments("--start-maximized");
+                driver = new ChromeDriver(options);
                 break;
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
                 driver = new FirefoxDriver();
+                driver.manage().window().maximize();
                 break;
             case "edge":
                 WebDriverManager.edgedriver().setup();
                 driver = new EdgeDriver();
+                driver.manage().window().maximize();
                 break;
             default:
                 throw new IllegalArgumentException("Браузер " + browser + " не поддерживается");
