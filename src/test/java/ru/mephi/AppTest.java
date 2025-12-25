@@ -1,20 +1,12 @@
 package ru.mephi;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.testng.annotations.Test;
+import static org.testng.Assert.assertTrue;
 
-public class AppTest extends TestCase {
+public class AppTest {
 
-    public AppTest(String testName) {
-        super(testName);
-    }
-
-    public static Test suite() {
-        return new TestSuite(AppTest.class);
-    }
-
+    @Test
     public void testApp() {
-        assertTrue(true);
+        assertTrue(true, "Тест заглушка для успешного прохождения сборки");
     }
 }
