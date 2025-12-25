@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Selenium Academy Tests Suite" parallel="false">
+    <test name="Selenium Academy Tests">
+        <classes>
+            <class name="ru.mephi.tests.web.SeleniumAcademyTests"/>
+        </classes>
+    </test>
+</suite>
+
