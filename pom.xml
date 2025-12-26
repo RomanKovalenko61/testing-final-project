@@ -14,6 +14,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
+        <!-- По умолчанию НЕ запускаем тесты, требуем явного указания suite -->
+        <!-- Использование: mvn test -DsuiteXmlFile=testng.xml или testng-mobile.xml -->
     </properties>
 
     <build>
@@ -32,9 +34,8 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.2</version>
                 <configuration>
-                    <suiteXmlFiles>
-                        <suiteXmlFile>testng.xml</suiteXmlFile>
-                    </suiteXmlFiles>
+                    <!-- Запускаем тесты только если явно указан suite файл -->
+                    <!-- Пример: mvn test -Dsurefire.suiteXmlFiles=testng-mobile.xml -->
                     <testFailureIgnore>false</testFailureIgnore>
                 </configuration>
             </plugin>
